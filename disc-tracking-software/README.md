@@ -1,4 +1,4 @@
-        ESOF 423 | Project Documentation
+## ESOF 423 | Project Documentation
 
 __________________________________________________
 //docs inbound
