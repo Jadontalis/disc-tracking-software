@@ -13,8 +13,8 @@ export default function SignInPage() {
           <input 
             id="email" 
             type="email" 
-            placeholder="m@example.com" 
-            className="w-full p-2 border rounded-md"
+            placeholder="email@example.com" 
+            className="w-full p-2.5 bg-[#101835] hover:border-white rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#54c4c3] focus:ring-1 focus:ring-[#54c4c3] transition-colors"
             required 
           />
         </div>
@@ -22,21 +22,29 @@ export default function SignInPage() {
           <label htmlFor="password" className="text-sm font-medium">Password</label>
           <input 
             id="password" 
-            type="password" 
-            className="w-full p-2 border rounded-md"
+            type="password"
+            placeholder="Please enter a password"
+            className="w-full p-2.5 bg-[#101835] hover:border-white rounded-lg text-white placeholder:text-white/30 focus:outline-none focus:border-[#54c4c3] focus:ring-1 focus:ring-[#54c4c3] transition-colors"
             required 
           />
         </div>
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+        <button type="submit" className="w-full bg-[#456fb6] text-white py-2.5 rounded-lg hover:bg-[#365a9c] cursor-pointer">
           Sign In
         </button>
       </form>
-      <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
+      <div className="text-center text-sm text-white/60">
+        Don't have an account?{" "}
         <Link href="/create-account" className="underline hover:text-blue-600">
           Sign up
         </Link>
       </div>
+      <div className="text-center text-sm text-white/60">
+        <Link href="/" className="underline hover:text-blue-600">
+          Back to homepage
+        </Link>
+      </div>
+
+      
     </div>
   )
 }

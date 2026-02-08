@@ -18,7 +18,7 @@ export default function Header() {
             <img
               src="/flight IQ logo.svg"
               alt="Flight IQ logo"
-              className="h-12 md:h-14 w-auto transition-transform hover:scale-105"
+              className="h-12 md:h-10 w-auto transition-transform hover:scale-105"
             />
           </Link>
 
@@ -39,7 +39,7 @@ export default function Header() {
               Log in
             </Link>
             <Link
-              href="/sign-up"
+              href="/create-account"
               className="bg-[#54c4c3] text-black px-5 py-2.5 rounded-full text-sm font-medium hover:bg-[#3daaa9] transition-colors shadow-md"
             >
               Get Started

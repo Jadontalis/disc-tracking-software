@@ -1,14 +1,38 @@
+/* Client component for the CTA section to handle mouse events */
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useRef } from "react";
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroPosition, setHeroPosition] = useState({ x: 50, y: 50 });
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!heroRef.current) return;
+    
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    setHeroPosition({ x, y });
+  };
+
   return (
-    <div className="relative min-h-screen pt-32 md:pt-48 lg:pt-60">
+    <div className="relative min-h-screen">
       {/* Subtle radial gradient overlay using palette colors */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(84,196,195,0.08),transparent_50%)] pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="relative pb-16 md:pb-28 px-5 sm:px-8 md:px-12 lg:px-20">
+      <section 
+        ref={heroRef}
+        onMouseMove={handleHeroMouseMove}
+        className="relative pt-32 md:pt-48 lg:pt-60 pb-16 md:pb-28 px-5 sm:px-8 md:px-12 lg:px-20 overflow-hidden"
+        style={{
+          background: `radial-gradient(circle at ${heroPosition.x}% ${heroPosition.y}%, rgba(118,77,159,0.3) 0%, rgba(118,77,159,0.3) 10%, transparent 90%)`
+        }}
+      >
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 text-white">
             Track Every Throw.<br />
@@ -21,14 +45,14 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <Link
-              href="/signup"
+              href="/create-account"
               className="inline-block bg-[#54c4c3] text-black font-medium text-lg py-3.5 px-8 rounded-lg transition hover:bg-[#3daaa9] shadow-lg hover:shadow-xl"
             >
               Sign up for free
             </Link>
 
             <Link
-              href="/demo"
+              href="/sign-in"
               className="inline-block border border-[#456fb6] text-white font-medium text-lg py-3.5 px-8 rounded-lg transition hover:border-[#54c4c3] hover:text-[#54c4c3]"
             >
               Sign in
@@ -66,25 +90,31 @@ export default function Home() {
           <FeatureCard
             title="Disc Tracking"
             description="Find your discs with ease — track your lost discs."
-            imageSrc="/Spyglass.svg"
+            imageSrc="/spyglass.svg"
           />
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 md:py-24 px-5 sm:px-8 text-center bg-linear-to-t from-[#764d9f]/10 via-transparent to-transparent">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-[#54c4c3]">
-          Ready to level up your disc golf game?
-        </h2>
-        <Link
-          href="/signup"
-          className="inline-block bg-[#54c4c3] text-black font-medium text-xl py-4 px-10 rounded-lg transition hover:bg-[#3daaa9] shadow-lg hover:shadow-xl"
-        >
-          Start Tracking Today
-        </Link>
-      </section>
+      <InteractiveCTA />
     </div>
   );
+}
+
+function InteractiveCTA() {
+  return (
+    <section className="py-20 md:py-24 px-5 sm:px-8 text-center relative overflow-hidden">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-[#54c4c3] relative z-10">
+        Ready to level up your disc golf game?
+      </h2>
+      <Link
+        href="/create-account"
+        className="relative z-10 inline-block bg-[#54c4c3] text-black font-medium text-xl py-4 px-10 rounded-lg transition hover:bg-[#3daaa9] shadow-lg hover:shadow-xl"
+      >
+        Start Tracking Today
+      </Link>
+    </section>
+  )
 }
 
 // FeatureCard that displays images (SVGs or raster images)
@@ -99,8 +129,7 @@ function FeatureCard({
 }) {
   return (
     <div className="bg-[#223066]/60 backdrop-blur-md border border-[#764d9f]/40 rounded-xl overflow-hidden transition-all duration-300 hover:border-[#54c4c3]/70 hover:shadow-xl group flex flex-col h-full">
-      {/* Image container – smaller size */}
-      <div className="relative h-32 md:h-40 flex items-center justify-center overflow-hidden bg-linear-to-br from-[#223066]/80 to-[#190f2A]/80">
+      <div className="relative h-32 md:h-34 flex items-center justify-center overflow-hidden bg-linear-to-br from-[#223066]/80 to-[#190f2A]/80">
         <Image
           src={imageSrc}
           alt={`${title} feature illustration`}
