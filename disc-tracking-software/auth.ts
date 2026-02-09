@@ -4,7 +4,6 @@ import Credentials from "next-auth/providers/credentials"
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Credentials({
-      // You can implement your own credential logic here
       credentials: {
         email: {},
         password: {},
