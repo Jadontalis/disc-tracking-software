@@ -23,7 +23,8 @@ DEVELOPER DOCS:
 * Backend Server will be done in GO, this interacts as the port for the web application to interact with the devices and send data packets for the web app to process and serve to the end user. Recharts, a Next.js library is going to handle the visualization of the data in chart and card form.
 * Embedded system will be written in C/C++ and flashed onto physical device memory.
 
-HOW TO OBTAIN SOURCE CODE: This is shared through Github and downloading dependencies. To know which ones are to be downloaded, please refer to the project package.json file and "NPM/NPX install [dependency]" CLI formatting 
+HOW TO OBTAIN SOURCE CODE: This is shared through Github and downloading dependencies. To know which ones are to be downloaded, please refer to the project package.json file and do command **"npm ci"**. This reads the package.json and package-lock.json and does a **c**lean **i**nstall. Do this instead of the general "npm install" as that will much cleaner to work with for CI/CD pipelining.
+
 
 Planned Directory Structure: Aformentioned in developer docs.
 How to Build/Test: See Getting Started in bottom of this Readme file.
